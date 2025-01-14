@@ -1,0 +1,33 @@
+var lineAccessToken = 'XXXXXXXXXX';
+var userId = 'XXXXXXXXXX';
+var imageUrls = [
+  "https://lh3.googleusercontent.com/d/10Rh-W3RoUyHsZUgpOfuasSJ_ji_bXnYp",
+  "https://lh3.googleusercontent.com/d/1_AWqdvcyrT07brcMpnuLAuPZGAYLKVjd"
+];
+
+function sendImagesToLine(lineAccessToken, userId, imageUrls) {
+    if (!Array.isArray(imageUrls) || imageUrls.length === 0) {
+      return;
+    }
+
+    var payload = {
+      to: userId,
+      messages: imageUrls.map(function (url) {
+        return { type: "image", originalContentUrl: url, previewImageUrl: url };
+      })
+    };
+
+    var options = {
+      method: "post",
+      contentType: "application/json",
+      headers: { "Authorization": "Bearer " + lineAccessToken },
+      payload: JSON.stringify(payload)
+    };
+
+    var response = UrlFetchApp.fetch("https://api.line.me/v2/bot/message/push", options);
+    Logger.log("Response: " + response.getContentText());
+
+}
+
+// Call the function
+sendImagesToLine(lineAccessToken, userId, imageUrls);
