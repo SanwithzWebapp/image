@@ -1,3 +1,5 @@
+function sendImagesToLine(lineAccessToken, userId, imageUrls) {
+
 var lineAccessToken = 'XXXXXXXXXX';
 var userId = 'XXXXXXXXXX';
 var imageUrls = [
@@ -5,7 +7,7 @@ var imageUrls = [
   "https://lh3.googleusercontent.com/d/1_AWqdvcyrT07brcMpnuLAuPZGAYLKVjd"
 ];
 
-function sendImagesToLine(lineAccessToken, userId, imageUrls) {
+
     if (!Array.isArray(imageUrls) || imageUrls.length === 0) {
       return;
     }
@@ -29,5 +31,3 @@ function sendImagesToLine(lineAccessToken, userId, imageUrls) {
 
 }
 
-// Call the function
-sendImagesToLine(lineAccessToken, userId, imageUrls);
